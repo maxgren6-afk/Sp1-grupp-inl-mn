@@ -14,5 +14,6 @@ public class BananaPickup : MonoBehaviour
         }
         Destroy(gameObject);
     }
+    //1
 
 }

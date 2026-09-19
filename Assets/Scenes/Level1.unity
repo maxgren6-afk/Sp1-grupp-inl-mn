@@ -8029,6 +8029,7 @@ MonoBehaviour:
     m_Bits: 0
   raycastDistance: 0.25
   jumpSoundEffect: {fileID: 8300000, guid: da0d8238b596c2c499e0088a7c01e459, type: 3}
+  dashSoundEffect: {fileID: 8300000, guid: 2ba191a6b0af70a4190d756583f593d5, type: 3}
   jumpParticleSystem: {fileID: 1486721450}
   dashParticleSystem: {fileID: 481485457}
   wallJumpForceX: 0

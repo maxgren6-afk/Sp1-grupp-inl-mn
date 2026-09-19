@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform leftFoot, rightFoot, leftArm, rightArm;
     [SerializeField] private LayerMask whatIsGround, whatIsWall;
     [SerializeField] private float raycastDistance = 0.25f;
-    [SerializeField] private AudioClip jumpSoundEffect;
+    [SerializeField] private AudioClip jumpSoundEffect, dashSoundEffect;
     [SerializeField] private ParticleSystem jumpParticleSystem, dashParticleSystem;
     [SerializeField] private float wallJumpForceX, wallJumpForceY, wallJumpCooldown, dashForce, dashCooldown;
  
@@ -158,6 +158,8 @@ public class PlayerMovement : MonoBehaviour
             CallDashParticle();
 
             CallDashSpent();
+
+            audioSource.PlayOneShot(dashSoundEffect);
 
             Invoke("CanMoveAgain", 0.3f);
 

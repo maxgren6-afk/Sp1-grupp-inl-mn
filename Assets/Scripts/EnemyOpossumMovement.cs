@@ -38,6 +38,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
         transform.Translate(new Vector2(moveSpeed, 0) * Time.deltaTime);
     }
 
+    public void ReverseDirection()
+    {
+        moveSpeed *= -1;
+    }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         // Lägg till || om enemy collision vill has
@@ -49,14 +54,30 @@ public class NewMonoBehaviourScript : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             other.gameObject.GetComponent<PlayerHealth>().TakeDamage(damageGiven);
+            PlayerMovement playerMovement = other.gameObject.GetComponent<PlayerMovement>();
+            BossOpossum boss = GetComponent<BossOpossum>();
 
             if (other.transform.position.x > transform.position.x)
             {
-                other.gameObject.GetComponent<PlayerMovement>().TakeKnockback(knockbackForce, upwardsForce);
+                if (boss != null)
+                {
+                    playerMovement.TakeBossKnockback(knockbackForce, upwardsForce);
+                }
+                else
+                {
+                    playerMovement.TakeKnockback(knockbackForce, upwardsForce);
+                }
             }
             else
             {
-                other.gameObject.GetComponent<PlayerMovement>().TakeKnockback(-knockbackForce, upwardsForce);
+                if (boss != null)
+                {
+                    playerMovement.TakeBossKnockback(-knockbackForce, upwardsForce);
+                }
+                else
+                {
+                    playerMovement.TakeKnockback(-knockbackForce, upwardsForce);
+                }
             }
         }
     }
@@ -75,7 +96,16 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 // Instantiate(enemyDestroy, transform.position, Quaternion.identity);
             }
 
-            Destroy(gameObject);
+            BossHealth bossHealth = GetComponent<BossHealth>();
+
+            if (bossHealth != null)
+            {
+                bossHealth.TakeDamage(1);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

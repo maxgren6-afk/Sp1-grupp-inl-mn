@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3305684605659403396}
   - component: {fileID: 3046520238843730175}
   - component: {fileID: 3578242675087990788}
+  - component: {fileID: -1497606449472042357}
   m_Layer: 0
   m_Name: EnemyWitch
   m_TagString: Untagged
@@ -115,3 +116,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-1497606449472042357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8940956535334825717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a03ed3807261344d932378144cb7e25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  moveSpeed: 2
+  bounciness: 100
+  damageGiven: 1
+  knockbackForce: 100
+  upwardsForce: 5
+  enemyDestroy: {fileID: 0}

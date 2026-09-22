@@ -3,7 +3,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
 {
+    [SerializeField] private GameObject swordHitBox;
+    [SerializeField] private float attackTimer;
     private Animator animator;
+    
 
     private void Awake()
     {
@@ -14,8 +17,22 @@ public class PlayerAttack : MonoBehaviour
     {
         if (value.isPressed)
         {
-            Debug.Log("Setting AttackTrigger");
-            animator.SetTrigger("AttackTrigger");
+            CallSwordAttack();
         }
+    }
+
+    private void CallSwordAttack()
+    {
+        Debug.Log("Setting AttackTrigger");
+        animator.SetTrigger("AttackTrigger");
+
+        swordHitBox.SetActive(true);
+
+        Invoke(nameof(CallSwordAttackEnd), attackTimer);
+    }
+
+    private void CallSwordAttackEnd()
+    {
+        swordHitBox.SetActive(false);
     }
 }

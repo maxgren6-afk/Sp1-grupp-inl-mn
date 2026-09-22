@@ -246,4 +246,9 @@ public class PlayerMovement : MonoBehaviour
     {
         canDash = true;
     }
+
+    public void CallSwordJump(float swordForce)
+    {
+        rgbd.linearVelocity = new Vector2(rgbd.linearVelocity.x, swordForce);
+    }
 }

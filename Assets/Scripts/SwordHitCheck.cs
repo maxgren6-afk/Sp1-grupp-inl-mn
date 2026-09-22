@@ -1,25 +1,63 @@
 using System;
+using Unity.Collections;
 using Unity.Tutorials.Editor;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class SwordHitCheck : MonoBehaviour
 {
-    [SerializeField] private GameObject swordHitbox;
-    [SerializeField] private float swordForce = 600f;
+    [SerializeField] private GameObject swordHitbox, player;
+    [SerializeField] private float swordForce, swordKnockback, minSwordJumpHeight;
     [SerializeField] private ParticleSystem swordJumpParticle;
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            other.IsDestroyed();
 
-            GetComponent<PlayerMovement>().CallSwordJump(swordForce);
+            float enemyPosY = other.transform.position.y;
+            float enemyPosX = other.transform.position.x;
 
+            float playerPosY = player.transform.position.y;
+            float playerPosX = player.transform.position.x;
+
+            //Debug.Log("Hit");
+
+            if (playerPosY >= (minSwordJumpHeight + enemyPosY))
+            {
+                GetComponentInParent<PlayerMovement>().CallSwordJump(swordForce);
+            }
+
+            if (playerPosY <= minSwordJumpHeight + enemyPosY)
+            {
+                //Debug.Log("Hit");
+
+                if (playerPosX > enemyPosX)
+                {
+                    GetComponentInParent<PlayerMovement>().CallSwordKnockback(swordKnockback);
+                }
+
+                if (playerPosX < enemyPosX)
+                {
+                    //Debug.Log("Hit");
+
+                    GetComponentInParent<PlayerMovement>().CallSwordKnockback(swordKnockback * -1);
+                }
+            }
+
+            swordJumpParticle.transform.position = other.transform.position;
             swordJumpParticle.Play();
+
+            Destroy(other.gameObject);
+
         }
 
         //if (boss)
     }
+
+    //private void CallEnemyDestroy()
+    //{
+    //    swordJumpParticle.Play();
+    //}
 }

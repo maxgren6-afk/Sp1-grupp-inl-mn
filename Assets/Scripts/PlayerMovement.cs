@@ -209,6 +209,13 @@ public class PlayerMovement : MonoBehaviour
         Invoke("CanMoveAgain", 0.25f);
     }
 
+    public void TakeBossKnockback(float knockbackForce, float upwardsForce)
+    {
+        canMove = false;
+        rgbd.AddForce(new Vector2(knockbackForce, upwardsForce) * 0.25f, ForceMode2D.Impulse);
+        Invoke("CanMoveAgain", 0.25f);
+    }
+
     private void CanMoveAgain()
     {
         canMove = true;

@@ -12,6 +12,10 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Color normalHealthColor, mediumHealthColor, criticalHealthColor;
     private int currentHealth;
 
+    public Color NormalHealthColor => normalHealthColor;
+    public Color MediumHealthColor => mediumHealthColor;
+    public Color CriticalHealthColor => criticalHealthColor;
+
 
     
     void Start()

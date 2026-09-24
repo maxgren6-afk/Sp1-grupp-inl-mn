@@ -253,4 +253,31 @@ public class PlayerMovement : MonoBehaviour
     {
         canDash = true;
     }
+
+    public void CallSwordJump(float swordForce)
+    {
+        rgbd.linearVelocity = new Vector2(rgbd.linearVelocity.x, 0);
+
+        canMove = false;
+
+        rgbd.AddForce(new Vector2(rgbd.linearVelocity.x, swordForce));
+
+        Invoke(nameof(CanMoveAgain), (0.1f + Time.deltaTime));
+    }
+
+    public void CallSwordKnockback(float swordKnockbackPM)
+    {
+        rgbd.linearVelocity = new Vector2(0, rgbd.linearVelocity.y);
+
+        canMove = false;
+
+        rgbd.AddForce(new Vector2(swordKnockbackPM, rgbd.linearVelocity.y));
+
+        Invoke(nameof(CanMoveAgain), (0.1f + Time.deltaTime));
+    }
+
+    public bool CallCurrentDirection()
+    {
+        return rend.flipX;
+    }
 }

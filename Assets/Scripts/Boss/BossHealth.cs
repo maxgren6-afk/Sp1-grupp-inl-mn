@@ -7,6 +7,7 @@ public class BossHealth : MonoBehaviour
     [SerializeField] private GameObject bossCanvas;
     [SerializeField] private Slider healthSlider;
     [SerializeField] private Image fillImage;
+    [SerializeField] private Color normalHealthColor, mediumHealthColor, criticalHealthColor;
 
     private int currentHealth;
     private Vector3 spawnPosition;
@@ -14,6 +15,7 @@ public class BossHealth : MonoBehaviour
     private Transform player;
     private Vector3 playerSpawnPosition;
     private Rigidbody2D playerRigidbody;
+    private PlayerHealth playerHealth;
 
     private void Start()
     {
@@ -21,6 +23,14 @@ public class BossHealth : MonoBehaviour
         spawnPosition = transform.position;
         rigidbody2D = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        playerHealth = player != null ? player.GetComponent<PlayerHealth>() : null;
+
+        if (playerHealth != null)
+        {
+            normalHealthColor = playerHealth.NormalHealthColor;
+            mediumHealthColor = playerHealth.MediumHealthColor;
+            criticalHealthColor = playerHealth.CriticalHealthColor;
+        }
 
         if (player != null)
         {
@@ -55,16 +65,6 @@ public class BossHealth : MonoBehaviour
         }
         else
         {
-            if (player != null)
-            {
-                player.position = playerSpawnPosition;
-
-                if (playerRigidbody != null)
-                {
-                    playerRigidbody.linearVelocity = Vector2.zero;
-                }
-            }
-
             transform.position = spawnPosition;
             transform.localScale += Vector3.one;
 
@@ -86,17 +86,17 @@ public class BossHealth : MonoBehaviour
 
         if (currentHealth >= 3)
         {
-            fillImage.color = new Color32(0x6C, 0x9F, 0x14, 0xFF);
+            fillImage.color = normalHealthColor;
         }
 
         if (currentHealth == 2)
         {
-            fillImage.color = new Color32(0xE5, 0xC1, 0x00, 0xFF);
+            fillImage.color = mediumHealthColor;
         }
 
         if (currentHealth <= 1)
         {
-            fillImage.color = new Color32(0xFF, 0x46, 0x00, 0xFF);
+            fillImage.color = criticalHealthColor;
         }
     }
 }

@@ -12,7 +12,7 @@ public class HealthPickup : MonoBehaviour
 
             if (hasRestoredHealth)
             {
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }

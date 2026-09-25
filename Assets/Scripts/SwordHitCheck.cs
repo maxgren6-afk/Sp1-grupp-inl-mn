@@ -49,7 +49,7 @@ public class SwordHitCheck : MonoBehaviour
             swordJumpParticle.transform.position = other.transform.position;
             swordJumpParticle.Play();
 
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
 
         }
 

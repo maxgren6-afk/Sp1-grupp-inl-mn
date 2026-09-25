@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
 
     float mouseX;
     float mouseY;
+    bool canAttack = true;
 
     private void Awake()
     {
@@ -22,14 +23,19 @@ public class PlayerAttack : MonoBehaviour
         mouseX = mousePos.x;
         mouseY = mousePos.y;
 
-        Debug.Log(mousePos);
+        //Debug.Log(mousePos);
     }
 
     public void OnAttack(InputValue value)
     {
         if (value.isPressed)
         {
-            CallSwordAttack();
+            if (canAttack)
+            {
+                CallSwordAttack();
+
+                canAttack = false;
+            }
         }
     }
 
@@ -38,9 +44,9 @@ public class PlayerAttack : MonoBehaviour
         //Debug.Log("Setting AttackTrigger");
         animator.SetTrigger("AttackTrigger");
 
-        swordHitBox.SetActive(true);
+        
 
-        Invoke(nameof(CallSwordAttackEnd), (attackTimer + Time.deltaTime));
+        Invoke(nameof(CallSwordAttackEnd), (attackTimer / 2));
 
         if (mouseX > 960f)
         {
@@ -51,13 +57,19 @@ public class PlayerAttack : MonoBehaviour
                     transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
                     CallAttackReset();
+
+                    //Debug.Log("Right");
                 }
 
                 if (GetComponent<PlayerMovement>().CallCurrentDirection())
                 {
                     transform.rotation = Quaternion.Euler(0f, 180f, 0f);
 
+                    swordHitBox.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+
                     CallAttackReset();
+
+                    //Debug.Log("Left");
                 }
             }
 
@@ -87,6 +99,8 @@ public class PlayerAttack : MonoBehaviour
                 if (GetComponent<PlayerMovement>().CallCurrentDirection())
                 {
                     transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+
+                    swordHitBox.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
 
                     CallAttackReset();
                 }
@@ -118,6 +132,8 @@ public class PlayerAttack : MonoBehaviour
             }
         }
 
+        swordHitBox.SetActive(true);
+
     }
 
     private void CallSwordAttackEnd()
@@ -127,11 +143,20 @@ public class PlayerAttack : MonoBehaviour
 
     private void CallAttackReset()
     {
-        Invoke(nameof(CallResetRotation), attackTimer);
+        Invoke(nameof(CallResetRotation), (attackTimer / 2));
+
+        Invoke(nameof(CallResetCanAttack), (attackTimer));
     }
 
     private void CallResetRotation()
     {
         transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+
+        swordHitBox.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+    }
+
+    private void CallResetCanAttack()
+    {
+        canAttack = true;
     }
 }

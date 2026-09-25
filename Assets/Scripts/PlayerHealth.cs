@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Slider healthSlider;
     [SerializeField] Image fillImage;
     [SerializeField] private Color normalHealthColor, mediumHealthColor, criticalHealthColor;
+    [SerializeField] private GameObject[] setActiveTargets;
     private int currentHealth;
 
     public Color NormalHealthColor => normalHealthColor;
@@ -47,6 +48,8 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthbar();
 
         fillImage.color = normalHealthColor;
+
+        CallSetActiveRespawn();
     }
 
     private void UpdateHealthbar()
@@ -111,5 +114,11 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthbar();
     }
 
-
+    private void CallSetActiveRespawn()
+    {
+        for (int i = 0; i < setActiveTargets.Length ; i++)
+        {
+            setActiveTargets[i].SetActive(true);
+        }
+    }
 }

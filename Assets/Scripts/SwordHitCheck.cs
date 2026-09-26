@@ -54,10 +54,10 @@ public class SwordHitCheck : MonoBehaviour
 
         }
 
-        if (other.CompareTag("Boss"))
-        {
-            other.GetComponent<BossHealth>().TakeDamage(swordDamage);
-        }
+        //if (other.CompareTag("Boss"))
+        //{
+        //    other.GetComponent<BossHealth>().TakeDamage(swordDamage);
+        //}
     }
 
     //private void CallEnemyDestroy()

@@ -11,8 +11,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [SerializeField] private AudioClip enemyDestroy;
 
 
+
     private SpriteRenderer rend;
     private AudioSource audioSource;
+    private bool canTakeDamage = true;
 
     private void Start()
     {
@@ -84,7 +86,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("PlayerSword"))
         {
             Rigidbody2D rgbd = other.attachedRigidbody;
 
@@ -98,14 +100,19 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
             BossHealth bossHealth = GetComponent<BossHealth>();
 
-            if (bossHealth != null)
+            if (bossHealth != null && canTakeDamage)
             {
                 bossHealth.TakeDamage(1);
-            }
-            else
-            {
-                Destroy(gameObject);
+
+                canTakeDamage = false;
+
+                Invoke(nameof(CallBossTakeDamageReset), 0.1f);
             }
         }
+    }
+
+    private void CallBossTakeDamageReset()
+    {
+        canTakeDamage = true;
     }
 }

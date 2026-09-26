@@ -11,6 +11,9 @@ public class Checkpoint_Bossrespawn : MonoBehaviour
             boss.SetActive(true);
         }
 
-
+        if (boss != null)
+        {
+            GetComponent<BossRespawn>().RespawnBoss();
+        }
     }
 }

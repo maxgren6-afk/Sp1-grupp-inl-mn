@@ -99,4 +99,11 @@ public class BossHealth : MonoBehaviour
             fillImage.color = criticalHealthColor;
         }
     }
+
+    public void CallResetHealth()
+    {
+        currentHealth = startingHealth;
+
+        UpdateHealthbar();
+    }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class BossMovement : MonoBehaviour
 {
 
     [SerializeField] private float moveSpeed = 2.0f;
@@ -24,12 +24,12 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void Update()
     {
-        if (moveSpeed < 0)
+        if (moveSpeed > 0)
         {
             rend.flipX = false;
         }
 
-        if (moveSpeed > 0)
+        if (moveSpeed < 0)
         {
             rend.flipX = true;
         }

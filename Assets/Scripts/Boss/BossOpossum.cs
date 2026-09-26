@@ -12,7 +12,7 @@ public class BossOpossum : MonoBehaviour
     private Transform player;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigidbody2D;
-    private NewMonoBehaviourScript enemyMovement;
+    private BossMovement enemyMovement;
     private float dashTimer;
     private float dashCooldown;
     private float jumpCooldown;
@@ -23,7 +23,7 @@ public class BossOpossum : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody2D = GetComponent<Rigidbody2D>();
-        enemyMovement = GetComponent<NewMonoBehaviourScript>();
+        enemyMovement = GetComponent<BossMovement>();
         enemyMovement?.ReverseDirection();
         transform.localScale *= sizeMultiplier;
         dashCooldown = timeBetweenDashes;
@@ -62,7 +62,7 @@ public class BossOpossum : MonoBehaviour
     {
         if (dashTimer > 0f)
         {
-            spriteRenderer.flipX = dashDirection > 0;
+            spriteRenderer.flipX = dashDirection < 0;
         }
     }
 

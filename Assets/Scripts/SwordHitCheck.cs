@@ -8,6 +8,7 @@ public class SwordHitCheck : MonoBehaviour
 {
     [SerializeField] private GameObject swordHitbox, player;
     [SerializeField] private float swordForce, swordKnockback, minSwordJumpHeight;
+    [SerializeField] private int swordDamage = 1;
     [SerializeField] private ParticleSystem swordJumpParticle;
 
 
@@ -53,7 +54,10 @@ public class SwordHitCheck : MonoBehaviour
 
         }
 
-        //if (boss)
+        if (other.CompareTag("Boss"))
+        {
+            other.GetComponent<BossHealth>().TakeDamage(swordDamage);
+        }
     }
 
     //private void CallEnemyDestroy()

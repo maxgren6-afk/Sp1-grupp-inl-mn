@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class BossHealth : MonoBehaviour
 {
     [SerializeField] private int startingHealth = 5;
-    [SerializeField] private GameObject bossCanvas;
+    [SerializeField] private GameObject bossCanvas, portal;
     [SerializeField] private Slider healthSlider;
     [SerializeField] private Image fillImage;
     [SerializeField] private Color normalHealthColor, mediumHealthColor, criticalHealthColor;
@@ -62,6 +62,8 @@ public class BossHealth : MonoBehaviour
             }
 
             Destroy(gameObject);
+
+            portal.SetActive(true);
         }
         else
         {
@@ -84,17 +86,17 @@ public class BossHealth : MonoBehaviour
 
         healthSlider.value = currentHealth;
 
-        if (currentHealth >= 3)
+        if (currentHealth >= 6)
         {
             fillImage.color = normalHealthColor;
         }
 
-        if (currentHealth == 2)
+        if (currentHealth == 4)
         {
             fillImage.color = mediumHealthColor;
         }
 
-        if (currentHealth <= 1)
+        if (currentHealth <= 2)
         {
             fillImage.color = criticalHealthColor;
         }

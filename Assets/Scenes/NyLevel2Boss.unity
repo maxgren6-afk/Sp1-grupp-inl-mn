@@ -8686,8 +8686,32 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   raycastDistance: 0.25
-  jumpSoundEffect: {fileID: 8300000, guid: da0d8238b596c2c499e0088a7c01e459, type: 3}
-  dashSoundEffect: {fileID: 8300000, guid: 2ba191a6b0af70a4190d756583f593d5, type: 3}
+  jumpStartSoundEffects:
+  - {fileID: 8300000, guid: 496ca863bdc784e4c84f1bf9baceabe2, type: 3}
+  - {fileID: 8300000, guid: 632bb3407243af945969a87639e83038, type: 3}
+  - {fileID: 8300000, guid: c7e98289dc1c7b944ba1c7b9267d4a07, type: 3}
+  - {fileID: 8300000, guid: ae5dbce5184cc364cadb27f03932033d, type: 3}
+  - {fileID: 8300000, guid: 80a9d7f4b319217419b49df4a75ba687, type: 3}
+  - {fileID: 8300000, guid: 852e9d75c842b064da6ed82a2bc19c03, type: 3}
+  footstepSoundEffects:
+  - {fileID: 8300000, guid: 4043eda891d966d4ab2e0958ffb064db, type: 3}
+  - {fileID: 8300000, guid: 73a84a91ad293be4299830dc4ee0821d, type: 3}
+  - {fileID: 8300000, guid: 874f75d947808f740b162768a830e3cc, type: 3}
+  - {fileID: 8300000, guid: 1b6b46fb9e8130c4da5910ba0abb8edc, type: 3}
+  - {fileID: 8300000, guid: 6966c051579835342a2b7db6c28ed4e4, type: 3}
+  - {fileID: 8300000, guid: d24cd293a1b2a734f85d03e83c005a70, type: 3}
+  - {fileID: 8300000, guid: 0fd60fbdb59af7b42bb5973b2a340f46, type: 3}
+  - {fileID: 8300000, guid: f6fce0194c8d7444ba45ce837872eaa6, type: 3}
+  - {fileID: 8300000, guid: c5af154408fe3c944ba66ab64eaf4eef, type: 3}
+  - {fileID: 8300000, guid: 0a9ca9788b53c484eb758bd3481785cc, type: 3}
+  jumpLandSoundEffects:
+  - {fileID: 8300000, guid: 071b2edd53ce8474eb58feefa2d6ec0a, type: 3}
+  - {fileID: 8300000, guid: e912440caa6f88145bfd987465cefb17, type: 3}
+  - {fileID: 8300000, guid: aed88588148982d4ebacbe8cbbdd4c07, type: 3}
+  - {fileID: 8300000, guid: 732eb6595bcb3214c87f927ac57da56b, type: 3}
+  - {fileID: 8300000, guid: 1c3ab51863648564fb4fe780afd009e9, type: 3}
+  - {fileID: 8300000, guid: 6374ec8c133e1014a99fd9fcb287bacf, type: 3}
+  dashSoundEffect: {fileID: 8300000, guid: c5c1d4f7a40bece49878f6bf0df1a050, type: 3}
   jumpParticleSystem: {fileID: 1486721450}
   dashParticleSystem: {fileID: 1028167714}
   wallJumpForceX: 0
@@ -19364,7 +19388,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000e1a4533317ec653ci
+  m_ApplyToSortingLayers: 00000000i
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -37716,7 +37740,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 445be02aa57b58b45ae9eae80412496f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.15
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -48351,7 +48375,6 @@ MonoBehaviour:
   swordForce: 600
   swordKnockback: 700
   minSwordJumpHeight: 0.3
-  swordDamage: 1
   swordJumpParticle: {fileID: 2009986814}
 --- !u!212 &1727344798
 SpriteRenderer:

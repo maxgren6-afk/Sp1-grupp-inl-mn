@@ -1,14 +1,14 @@
-using System;
-using Unity.Collections;
-using Unity.Tutorials.Editor;
-using Unity.VisualScripting;
+//using System;
+//using Unity.Collections;
+//using Unity.Tutorials.Editor;
+//using Unity.VisualScripting;
 using UnityEngine;
 
 public class SwordHitCheck : MonoBehaviour
 {
     [SerializeField] private GameObject swordHitbox, player;
     [SerializeField] private float swordForce, swordKnockback, minSwordJumpHeight;
-    [SerializeField] private int swordDamage = 1;
+    
     [SerializeField] private ParticleSystem swordJumpParticle;
 
 

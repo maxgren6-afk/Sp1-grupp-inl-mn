@@ -18,7 +18,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform leftFoot, rightFoot, leftArm, rightArm;
     [SerializeField] private LayerMask whatIsGround, whatIsWall;
     [SerializeField] private float raycastDistance = 0.25f;
-    [SerializeField] private AudioClip jumpSoundEffect, dashSoundEffect;
+    [SerializeField] private AudioClip[] jumpStartSoundEffects, footstepSoundEffects, jumpLandSoundEffects;
+    [SerializeField] private AudioClip dashSoundEffect;
     [SerializeField] private ParticleSystem jumpParticleSystem, dashParticleSystem;
     [SerializeField] private float wallJumpForceX, wallJumpForceY, wallJumpCooldown, dashForce, dashCooldown;
  
@@ -26,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     bool canMove = true;
     bool canWallJump = true;
     bool canDash = true;
-
+    private bool wasGrounded;
 
 
     // Hämtar andra resurser
@@ -53,6 +54,14 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         moveDirection = move.action.ReadValue<float>();
+
+        bool isGrounded = CheckIsGrounded();
+
+        if (isGrounded && !wasGrounded)
+        {
+            PlayRandomSound(jumpLandSoundEffects);
+        }
+        wasGrounded = isGrounded;
 
         anim.SetFloat("MoveSpeed",MathF.Abs(rgbd.linearVelocity.x));
         anim.SetFloat("VerticalSpeed", rgbd.linearVelocity.y);
@@ -86,7 +95,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void FlipSprite(bool direction)
     {
-        rend.flipX = direction;
+        if (rend.flipX != direction)
+        {
+            rend.flipX = direction;
+
+            if (CheckIsGrounded() == true)
+            {
+                PlayFootstepSound();
+            }
+        }
     }
 
     // Metod för jump funktionen, context viktigt
@@ -99,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
         if (CheckIsGrounded() == true)
         {
             rgbd.AddForce(new Vector2(0, jumpForce));
-            audioSource.PlayOneShot(jumpSoundEffect);
+            PlayRandomSound(jumpStartSoundEffects);
 
             CallJumpParticle();
         }
@@ -112,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
                 rgbd.linearVelocity = new Vector2(0, 0);
 
                 rgbd.AddForce(new Vector2(wallJumpForceX, wallJumpForceY));
-                audioSource.PlayOneShot(jumpSoundEffect);
+                PlayRandomSound(jumpStartSoundEffects);
 
                 CallJumpParticle();
 
@@ -125,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
                 rgbd.linearVelocity = new Vector2(0, 0);
 
                 rgbd.AddForce(new Vector2(-wallJumpForceX, wallJumpForceY));
-                audioSource.PlayOneShot(jumpSoundEffect);
+                PlayRandomSound(jumpStartSoundEffects);
 
                 CallJumpParticle();
 
@@ -279,5 +296,20 @@ public class PlayerMovement : MonoBehaviour
     public bool CallCurrentDirection()
     {
         return rend.flipX;
+    }
+
+    public void PlayFootstepSound()
+    {
+        int randomIndex = UnityEngine.Random.Range(0, 10);
+        audioSource.PlayOneShot(footstepSoundEffects[randomIndex]);
+    }
+
+    private void PlayRandomSound(AudioClip[] clips)
+    {
+        if (clips != null && clips.Length > 0 && audioSource != null)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, clips.Length);
+            audioSource.PlayOneShot(clips[randomIndex]);
+        }
     }
 }

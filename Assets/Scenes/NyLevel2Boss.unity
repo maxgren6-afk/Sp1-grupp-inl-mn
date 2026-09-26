@@ -54249,6 +54249,7 @@ GameObject:
   - component: {fileID: 1989066235}
   - component: {fileID: 1989066234}
   - component: {fileID: 1989066233}
+  - component: {fileID: 1989066238}
   - component: {fileID: 1989066232}
   - component: {fileID: 1989066231}
   - component: {fileID: 1989066230}
@@ -54394,17 +54395,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.3}
+  m_Offset: {x: -0.1, y: 1.59}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1.125, y: 0.875}
+    oldSize: {x: 3.125, y: 3.125}
     newSize: {x: 0.36, y: 0.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.8, y: 0.7}
+  m_Size: {x: 0.7, y: 0.7}
   m_EdgeRadius: 0
 --- !u!61 &1989066229
 BoxCollider2D:
@@ -54440,17 +54441,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.3}
+  m_Offset: {x: -0.1, y: 1.59}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1.125, y: 0.875}
+    oldSize: {x: 3.125, y: 3.125}
     newSize: {x: 0.36, y: 0.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.8, y: 0.7}
+  m_Size: {x: 0.7, y: 0.7}
   m_EdgeRadius: 0
 --- !u!50 &1989066230
 Rigidbody2D:
@@ -54504,7 +54505,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1989066226}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a03ed3807261344d932378144cb7e25, type: 3}
   m_Name: 
@@ -54605,9 +54606,9 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 8020143640844766479, guid: 2843ea7f80229da42a78bcbaf23b69c8, type: 3}
+  m_Sprite: {fileID: -7143203775114824597, guid: 60a2d53b124430e478281de2e025e3cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.36, y: 0.28}
@@ -54625,7 +54626,7 @@ Transform:
   m_GameObject: {fileID: 1989066226}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -51.404392, y: 6.52491, z: 0}
+  m_LocalPosition: {x: -51.48, y: 6.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -54644,6 +54645,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossRespawn
   spawnPoint: {fileID: 1639569240}
+--- !u!114 &1989066238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989066226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2a6146a98b9eb45a663f12718a28cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossMovement
+  moveSpeed: 2
+  bounciness: 100
+  damageGiven: 1
+  knockbackForce: 100
+  upwardsForce: 5
+  enemyDestroy: {fileID: 0}
 --- !u!1001 &1995530767
 PrefabInstance:
   m_ObjectHideFlags: 0
